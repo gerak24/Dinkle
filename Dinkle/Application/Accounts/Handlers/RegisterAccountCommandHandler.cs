@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using System.Threading;
 using System.Threading.Tasks;
 using Dinkle.Application.Accounts.Commands;
@@ -10,7 +9,6 @@ using Dinkle.Core.Entities;
 using Dinkle.Core.Handlers;
 using Dinkle.Entities.Account;
 using Dinkle.Entities.Account.Data;
-using MediatR;
 using Microsoft.Extensions.Configuration;
 
 namespace Dinkle.Application.Accounts.Handlers

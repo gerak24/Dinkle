@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using Dinkle.Application.Accounts.Utils;
 using Dinkle.Core.Buses;
@@ -13,7 +14,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,6 +31,7 @@ namespace Dinkle
 
         public IConfiguration Configuration { get; }
 
+        [Obsolete("Obsolete")]
         public void ConfigureServices(IServiceCollection services)
         {
             #region Mediatrr
@@ -49,6 +50,7 @@ namespace Dinkle
             services.AddDatabaseManager();
             services.AddMarten(options =>
             {
+                var bb = Configuration.GetConnectionString("service");
                 options.Connection(Configuration.GetConnectionString("service"));
                 options.UseDefaultSerialization(
                     nonPublicMembersStorage: NonPublicMembersStorage.NonPublicConstructor |
@@ -90,9 +92,7 @@ namespace Dinkle
             #endregion
 
             services.AddControllers()
-#pragma warning disable CS0618
                 .AddFluentValidation(x => x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
-#pragma warning restore CS0618
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -103,6 +103,10 @@ namespace Dinkle
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

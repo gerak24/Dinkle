@@ -1,5 +1,4 @@
 ﻿using Dinkle.Core.Commands;
-using Dinkle.Entities.Account;
 using Dinkle.Entities.Account.Data;
 
 namespace Dinkle.Application.Accounts.Commands

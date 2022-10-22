@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Dinkle.Application.Accounts.Commands;
 using Dinkle.Application.Accounts.Queries;
 using Dinkle.Core.Buses;
+using Dinkle.Entities.Account.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,7 +41,7 @@ namespace Dinkle.Controllers
                 return BadRequest(ModelState);
             var result = await _queries.Send(cmd, ct);
             if (result.IsSuccsessful)
-                return Accepted();
+                return Json(new{result.Token,result.Role});
 
             return BadRequest(result.Messages);
         }
