@@ -1,9 +1,9 @@
 ﻿#nullable enable
 namespace Dinkle.Entities.Profile
 {
-    public class StidentProfile : Profile
+    public class StudentProfile : Profile
     {
-        public StidentProfile(string name, string secondName, string surname, string photo, string? course, string? faculty, string? group, string? number) : base(name, secondName,
+        public StudentProfile(string name, string secondName, string surname, string photo, string? course, string? faculty, string? group, string? number) : base(name, secondName,
             surname, photo)
         {
             Course = course;
