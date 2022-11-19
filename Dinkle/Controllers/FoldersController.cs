@@ -54,5 +54,16 @@ namespace Dinkle.Controllers
             
             return Accepted();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Prepare(PrepareReportCommand cmd, CancellationToken ct = default)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            await _commands.Publish(cmd, ct);
+            
+            return Accepted();
+        }
     }
 }
