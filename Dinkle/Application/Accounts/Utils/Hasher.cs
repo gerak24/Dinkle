@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Dinkle.Entities.Folder;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace Dinkle.Application.Accounts.Utils

@@ -18,7 +18,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Application\Profiles\Commands" />
+      <Folder Include="Application\Exports\Commands" />
+      <Folder Include="Application\Exports\Handlers" />
+      <Folder Include="Application\Exports\Queries" />
     </ItemGroup>
 
 </Project>

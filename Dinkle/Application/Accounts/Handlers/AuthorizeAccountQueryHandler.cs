@@ -56,8 +56,9 @@ namespace Dinkle.Application.Accounts.Handlers
             {
                 token = GetToken(account);
             }
+            
 
-            return new AuthorizeResponse(token, isComplete,Enum.GetName(account.Role) , messages);
+            return new AuthorizeResponse(token, isComplete, (await accountEntity).ApiKey, messages);
         }
 
         private string GetToken(Account account)

@@ -5,17 +5,16 @@ namespace Dinkle.Entities.Account.Data
 {
     public class AuthorizeResponse
     {
-        public AuthorizeResponse(string token, bool isSuccsessful, string? role, IEnumerable<string> messages = null)
+        public AuthorizeResponse(string token, bool isSuccsessful, string apiKey, IEnumerable<string> messages = null)
         {
             Messages = messages ?? ArraySegment<string>.Empty;
             Token = token;
             IsSuccsessful = isSuccsessful;
-            Role = role;
+            ApiKey = apiKey;
         }
-
-        public string? Role { get; }
         public bool IsSuccsessful { get; }
         public string Token { get; }
         public IEnumerable<string> Messages { get; }
+        public string ApiKey { get; }
     }
 }

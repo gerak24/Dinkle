@@ -5,15 +5,15 @@ namespace Dinkle.Application.Accounts.Commands
 {
     public class RegisterAccountCommand : ICommand<AuthorizeResponse>
     {
-        public RegisterAccountCommand(string login, string password, UserRole role)
+        public RegisterAccountCommand(string login, string apiKey, string password)
         {
             Login = login;
+            ApiKey = apiKey;
             Password = password;
-            Role = role;
         }
 
         public string Login { get; }
+        public string ApiKey { get; }
         public string Password { get; }
-        public UserRole Role { get; }
     }
 }

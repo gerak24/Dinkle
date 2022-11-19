@@ -1,0 +1,91 @@
+﻿{
+  "files": [
+    {
+      "name": "template1.frx",
+      "parentId": "6377865f5f620ebfce9a07cb",
+      "type": "File",
+      "size": 16857,
+      "subscriptionId": "6377865f5f620ebfce9a07ce",
+      "status": "Success",
+      "statusReason": "AllRight",
+      "id": "6377adb25f620ebfce9a0a00",
+      "createdTime": "2022-11-18T16:07:14.597Z",
+      "editedTime": "2022-11-18T16:07:25.623Z"
+    },
+    {
+      "name": "test.frx",
+      "parentId": "6377865f5f620ebfce9a07cb",
+      "type": "File",
+      "size": 24145,
+      "subscriptionId": "6377865f5f620ebfce9a07ce",
+      "status": "Success",
+      "statusReason": "AllRight",
+      "id": "6377bff15f620ebfce9a0afb",
+      "createdTime": "2022-11-18T17:25:05.419Z",
+      "editedTime": "2022-11-18T22:19:50.101Z"
+    },
+    {
+      "name": "TestSuper.frx",
+      "parentId": "6377865f5f620ebfce9a07cb",
+      "type": "File",
+      "size": 17129,
+      "subscriptionId": "6377865f5f620ebfce9a07ce",
+      "status": "Success",
+      "statusReason": "AllRight",
+      "id": "6377e67a5f620ebfce9a0cfd",
+      "createdTime": "2022-11-18T20:09:30.327Z",
+      "editedTime": "2022-11-18T20:18:57.084Z"
+    },
+    {
+      "name": "cock.frx",
+      "parentId": "6377865f5f620ebfce9a07cb",
+      "type": "File",
+      "size": 18882,
+      "subscriptionId": "6377865f5f620ebfce9a07ce",
+      "status": "Success",
+      "statusReason": "AllRight",
+      "id": "637805385f620ebfce9a0f39",
+      "createdTime": "2022-11-18T22:20:40.017Z",
+      "editedTime": "2022-11-18T22:37:35.37Z"
+    },
+    {
+      "name": "Новый файл (4).frx",
+      "parentId": "6377865f5f620ebfce9a07cb",
+      "type": "File",
+      "size": 16857,
+      "subscriptionId": "6377865f5f620ebfce9a07ce",
+      "status": "Success",
+      "statusReason": "AllRight",
+      "id": "63782c2b5f620ebfce9a133c",
+      "createdTime": "2022-11-19T01:06:51.612Z",
+      "editedTime": "2022-11-19T01:06:51.72Z"
+    },
+    {
+      "name": "Новый файл.frx",
+      "parentId": "6377865f5f620ebfce9a07cb",
+      "type": "File",
+      "size": 16857,
+      "subscriptionId": "6377865f5f620ebfce9a07ce",
+      "status": "Success",
+      "statusReason": "AllRight",
+      "id": "63782fba5f620ebfce9a136e",
+      "createdTime": "2022-11-19T01:22:02.099Z",
+      "editedTime": "2022-11-19T01:22:02.181Z"
+    },
+    {
+      "name": "1.frx",
+      "parentId": "6377865f5f620ebfce9a07cb",
+      "type": "File",
+      "size": 79778,
+      "subscriptionId": "6377865f5f620ebfce9a07ce",
+      "status": "Success",
+      "statusReason": "AllRight",
+      "id": "63782ff45f620ebfce9a1373",
+      "createdTime": "2022-11-19T01:23:00.727Z",
+      "editedTime": "2022-11-19T01:23:51.049Z"
+    }
+  ],
+  "count": 7,
+  "skip": 0,
+  "take": 7
+}

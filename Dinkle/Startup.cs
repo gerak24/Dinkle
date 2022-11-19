@@ -100,6 +100,7 @@ namespace Dinkle
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             }
 
             app.UseRouting();

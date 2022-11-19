@@ -41,7 +41,7 @@ namespace Dinkle.Application.Accounts.Handlers
                 isComplete = false;
             }
 
-            return new AuthorizeResponse(null, isComplete, null, messages);
+            return new AuthorizeResponse(null, isComplete, null,messages);
         }
     }
 }

@@ -7,6 +7,7 @@ using Dinkle.Application.Accounts.Commands;
 using Dinkle.Application.Accounts.Utils;
 using Dinkle.Core.Entities;
 using Dinkle.Core.Handlers;
+using Dinkle.Entities;
 using Dinkle.Entities.Account;
 using Dinkle.Entities.Account.Data;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +34,7 @@ namespace Dinkle.Application.Accounts.Handlers
             var isComplete = true;
             var hash = Hasher.Create(request.Password, _configuration["securityHash"]);
             var login = request.Login.ToUpperInvariant();
-            var account = new Account(Guid.NewGuid(), login, hash, request.Role);
+            var account = new Account(Guid.NewGuid(), login, hash,request.ApiKey);
             var items = await _entities.GetItemsAsync<Account>(x => x.Login == login, cancellationToken);
 
             if (items.Any())
@@ -42,17 +43,13 @@ namespace Dinkle.Application.Accounts.Handlers
                 isComplete = false;
             }
 
+
             if (isComplete)
             {
                 _entities.Add(account);
-                /*    var basepath = _configuration.GetSection("EmailOptions")["BasePath"];
-                    var model = new MailMessageDto($"{basepath}", account.Login);
-                    var body = await ViewToStringRenderer.RenderViewToStringAsync(_service ,$"~/Application/Main/MessageViews/RegistrationView.cshtml", model);
-                    var mail = new SendMailCommand(new MailAddress(account.Login), "Register confirmed",body, _configuration);
-                    await mail.SendEmailAsync();*/
             }
 
-            return new AuthorizeResponse(null, isComplete, null, messages);
+            return new AuthorizeResponse(null, isComplete,null ,messages);
         }
     }
 }

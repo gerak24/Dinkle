@@ -1,19 +1,17 @@
 ﻿using System;
-using Dinkle.Entities.Account.Data;
 
 namespace Dinkle.Entities.Account
 {
     public class Account : Entity
     {
-        public Account(Guid id,string login, string hash, UserRole role)
+        public Account(Guid id,string login, string hash, string apiKey)
         {
             Id = id;
             Login = login;
             Hash = hash;
-            Role = role;
+            ApiKey = apiKey;
         }
-
-        public UserRole Role { get; }
+        public string ApiKey { get; }
         public string Login { get; }
         public string Hash { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Dinkle.Controllers
 {
-    public class NewsController : ApiController
+    public class ExportsController : ApiController
     {
         
     }
