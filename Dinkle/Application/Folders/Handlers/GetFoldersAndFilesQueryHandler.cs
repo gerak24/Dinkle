@@ -26,25 +26,10 @@ namespace Dinkle.Application.Folders.Handlers
         {
             var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"apikey:{request.ApiKey}"));
             _client.DefaultRequestHeaders.Add("Authorization", $"Basic {auth}");
+
+            var response = await _client.GetAsync($"https://fastreport.cloud/api/rp/v1/{Enum.GetName(request.Type)}s/Folder/{request.Id}/ListFolderAndFiles",
+                cancellationToken);
             
-            HttpResponseMessage response;
-            switch (request.Type)
-            {
-                case EntityType.Export:
-                    response = await _client.GetAsync($"https://fastreport.cloud/api/rp/v1/Exports/Folder/{request.Id}/ListFolderAndFiles",
-                        cancellationToken);
-                    break;
-                case EntityType.Template:
-                    response = await _client.GetAsync($"https://fastreport.cloud/api/rp/v1/Templates/Folder/{request.Id}/ListFolderAndFiles",
-                        cancellationToken);
-                    break;
-                case EntityType.Report:
-                    response = await _client.GetAsync($"https://fastreport.cloud/api/rp/v1/Reports/Folder/{request.Id}/ListFolderAndFiles",
-                        cancellationToken);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
             var status = JsonConvert.DeserializeObject<FolderPayload>(await response.Content.ReadAsStringAsync(cancellationToken));
             return status;
         }
