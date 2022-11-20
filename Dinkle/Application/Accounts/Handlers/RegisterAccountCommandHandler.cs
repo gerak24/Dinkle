@@ -7,7 +7,6 @@ using Dinkle.Application.Accounts.Commands;
 using Dinkle.Application.Accounts.Utils;
 using Dinkle.Core.Entities;
 using Dinkle.Core.Handlers;
-using Dinkle.Entities;
 using Dinkle.Entities.Account;
 using Dinkle.Entities.Account.Data;
 using Microsoft.Extensions.Configuration;
@@ -34,7 +33,7 @@ namespace Dinkle.Application.Accounts.Handlers
             var isComplete = true;
             var hash = Hasher.Create(request.Password, _configuration["securityHash"]);
             var login = request.Login.ToUpperInvariant();
-            var account = new Account(Guid.NewGuid(), login, hash, new List<ApiKey>
+            var account = new Account(Guid.NewGuid(), login, hash, new List<Entities.Account.Data.ApiKey>
             {
                new("Initial",request.ApiKey) 
             });
