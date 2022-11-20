@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using Dinkle.Application.ApiKey.Commanda;
 using Dinkle.Core.Entities;
 using Dinkle.Core.Handlers;
+using Dinkle.Entities.Account;
 using Dinkle.Entities.Account.Data;
 using Newtonsoft.Json;
 
@@ -40,7 +42,11 @@ namespace Dinkle.Application.ApiKey.Handlers
                 await response.Content.ReadAsStringAsync(cancellationToken));
             if (response.StatusCode < HttpStatusCode.BadRequest && result != null)
             {
-                return new Entities.Account.Data.ApiKey(result.Description,result.Value);
+                var entities =
+                    await _entities.GetItemsAsync<Account>(cancellationToken);
+                var entity = entities.FirstOrDefault(x => x.ApiKey.ToList().Any(k => k.Key == request.ApiKey));
+                _entities.Update(entity);
+                return new Entities.Account.Data.ApiKey(result.Description, result.Value);
             }
 
             return null;
