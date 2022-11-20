@@ -55,7 +55,7 @@ namespace Dinkle.Controllers
             return Accepted();
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         public async Task<IActionResult> Prepare(PrepareReportCommand cmd, CancellationToken ct = default)
         {
             if (!ModelState.IsValid)
