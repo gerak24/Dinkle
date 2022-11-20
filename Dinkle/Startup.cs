@@ -103,6 +103,8 @@ namespace Dinkle
                 app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             }
 
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
             app.UseRouting();
 
             app.UseAuthentication();

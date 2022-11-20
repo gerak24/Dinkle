@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Buffers.Text;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
-using System.Text.Unicode;
 using System.Threading;
 using System.Threading.Tasks;
 using Dinkle.Application.Folders.Commands;
@@ -91,7 +89,7 @@ namespace Dinkle.Application.Folders.Handlers
             }
 
             return new EntityInfo(string.Empty, request.Name, string.Empty, string.Empty,
-                request.Tags ?? ArraySegment<string>.Empty, Enum.GetName(request.Type) ?? string.Empty, 0, "400", string.Empty,
+                request.Tags ?? ArraySegment<string>.Empty, response.StatusCode.ToString(), 0, "400", string.Empty,
                 "Error when create", null, "Error when create");
         }
     }
