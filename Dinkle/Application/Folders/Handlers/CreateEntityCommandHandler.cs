@@ -1,28 +1,34 @@
 ﻿using System;
+using System.Buffers.Text;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Unicode;
 using System.Threading;
 using System.Threading.Tasks;
 using Dinkle.Application.Folders.Commands;
+using Dinkle.Application.Folders.Queries;
+using Dinkle.Core.Buses;
 using Dinkle.Core.Entities;
 using Dinkle.Core.Handlers;
-using MediatR;
+using Dinkle.Entities;
 using Newtonsoft.Json;
 
 namespace Dinkle.Application.Folders.Handlers
 {
-    public class CreateEntityCommandHandler : ICommandHandler<CreateEntityCommand>
+    public class CreateEntityCommandHandler : ICommandHandler<CreateEntityCommand, EntityInfo>
     {
         private HttpClient _client = new();
         private IServerEntities _entities;
+        private IQueryBus _queries;
 
-        public CreateEntityCommandHandler(IServerEntities entities)
+        public CreateEntityCommandHandler(IServerEntities entities, IQueryBus queries)
         {
             _entities = entities;
+            _queries = queries;
         }
 
-        public async Task<Unit> Handle(CreateEntityCommand request, CancellationToken cancellationToken)
+        public async Task<EntityInfo> Handle(CreateEntityCommand request, CancellationToken cancellationToken)
         {
             var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"apikey:{request.ApiKey}"));
             _client.DefaultRequestHeaders.Add("Authorization", $"Basic {auth}");
@@ -56,8 +62,9 @@ namespace Dinkle.Application.Folders.Handlers
                     cancellationToken);
             }
 
+            var bb = await response.Content.ReadAsStringAsync(cancellationToken);
             var newItem =
-                JsonConvert.DeserializeObject<Entities.File>(
+                JsonConvert.DeserializeObject<File>( 
                     await response.Content.ReadAsStringAsync(cancellationToken));
             if (newItem != null)
             {
@@ -79,9 +86,13 @@ namespace Dinkle.Application.Folders.Handlers
                         }
                     },
                     cancellationToken);
+                return await _queries.Send(new GetEntityInfoQuery(newItem.Id, request.ApiKey, request.Type),
+                    cancellationToken);
             }
 
-            return Unit.Value;
+            return new EntityInfo(string.Empty, request.Name, string.Empty, string.Empty,
+                request.Tags ?? ArraySegment<string>.Empty, Enum.GetName(request.Type) ?? string.Empty, 0, "400", string.Empty,
+                "Error when create", null, "Error when create");
         }
     }
 }

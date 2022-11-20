@@ -50,7 +50,7 @@ namespace Dinkle.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _commands.Publish(cmd, ct);
+            var bb = await _commands.Send(cmd, ct);
             
             return Accepted();
         }
@@ -64,6 +64,14 @@ namespace Dinkle.Controllers
             await _commands.Publish(cmd, ct);
             
             return Accepted();
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetFileInfo(GetEntityInfoQuery cmd, CancellationToken ct = default)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);  
+            
+            return Accepted( await _queries.Send(cmd, ct));
         }
     }
 }

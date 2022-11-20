@@ -5,7 +5,7 @@ using Dinkle.Entities;
 
 namespace Dinkle.Application.Folders.Commands
 {
-    public class CreateEntityCommand : ICommand
+    public class CreateEntityCommand : ICommand<EntityInfo>
     {
         public CreateEntityCommand(string folderId, string apiKey, string name, string? content, IEnumerable<string>? tags, bool isFolder, EntityType type)
         {
