@@ -32,10 +32,10 @@ namespace Dinkle.Application.ApiKey.Handlers
             var response = await _client.PostAsJsonAsync($"https://fastreport.cloud/api/manage/v1/ApiKeys", new
                 {
                     request.Description,
-                    expired = DateTime.Now
+                    expired = "2023-11-20T10:32:24.971Z"
                 },
                 cancellationToken);
-            
+            var bb = await response.Content.ReadAsStringAsync(cancellationToken);
             var result = JsonConvert.DeserializeObject<ApiValue>(
                 await response.Content.ReadAsStringAsync(cancellationToken));
             if (response.StatusCode < HttpStatusCode.BadRequest && result != null)
