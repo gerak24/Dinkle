@@ -50,7 +50,6 @@ namespace Dinkle
             services.AddDatabaseManager();
             services.AddMarten(options =>
             {
-                var bb = Configuration.GetConnectionString("service");
                 options.Connection(Configuration.GetConnectionString("service"));
                 options.UseDefaultSerialization(
                     nonPublicMembersStorage: NonPublicMembersStorage.NonPublicConstructor |
