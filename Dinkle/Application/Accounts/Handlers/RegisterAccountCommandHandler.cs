@@ -34,7 +34,11 @@ namespace Dinkle.Application.Accounts.Handlers
             var isComplete = true;
             var hash = Hasher.Create(request.Password, _configuration["securityHash"]);
             var login = request.Login.ToUpperInvariant();
-            var account = new Account(Guid.NewGuid(), login, hash,request.ApiKey);
+            var account = new Account(Guid.NewGuid(), login, hash, new List<string>
+            {
+                request.ApiKey
+            });
+
             var items = await _entities.GetItemsAsync<Account>(x => x.Login == login, cancellationToken);
 
             if (items.Any())
@@ -49,7 +53,7 @@ namespace Dinkle.Application.Accounts.Handlers
                 _entities.Add(account);
             }
 
-            return new AuthorizeResponse(null, isComplete,null ,messages);
+            return new AuthorizeResponse(null, isComplete, null, messages);
         }
     }
 }
