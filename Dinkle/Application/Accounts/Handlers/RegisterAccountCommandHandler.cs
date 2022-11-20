@@ -34,9 +34,9 @@ namespace Dinkle.Application.Accounts.Handlers
             var isComplete = true;
             var hash = Hasher.Create(request.Password, _configuration["securityHash"]);
             var login = request.Login.ToUpperInvariant();
-            var account = new Account(Guid.NewGuid(), login, hash, new List<string>
+            var account = new Account(Guid.NewGuid(), login, hash, new List<ApiKey>
             {
-                request.ApiKey
+               new("Initial",request.ApiKey) 
             });
 
             var items = await _entities.GetItemsAsync<Account>(x => x.Login == login, cancellationToken);
