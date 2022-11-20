@@ -50,9 +50,7 @@ namespace Dinkle.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var bb = await _commands.Send(cmd, ct);
-            
-            return Accepted();
+            return Accepted(await _commands.Send(cmd, ct));
         }
 
         [HttpPost("[action]")]
